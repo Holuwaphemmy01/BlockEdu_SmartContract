@@ -1,6 +1,7 @@
 
 // Module: blockedu_contract{
 
+#[allow(unused_use)]
 
 module blockedu_contract::blockedu_contract{
 
@@ -11,8 +12,8 @@ module blockedu_contract::blockedu_contract{
 
     use sui::object::{Self, UID};
     use sui::tx_context::{Self, TxContext};
-   use sui::vector;
-    use sui::string;
+   use std::vector;
+    use std::string;
 
 
 
@@ -25,6 +26,21 @@ module blockedu_contract::blockedu_contract{
     public struct UserRegistry has key {
         id: UID,
         users: vector<User>,
+    }
+
+
+    public fun add_user(
+        registry: &mut UserRegistry,
+        first_name: string::String,
+        last_name: string::String,
+        user_address: string::String
+    ) {
+        let user = User {
+            first_name,
+            last_name,
+            user_address
+        };
+        vector::push_back(&mut registry.users, user);
     }
 
 }

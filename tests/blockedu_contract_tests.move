@@ -16,3 +16,5 @@ fun test_blockedu_contract_fail() {
     abort ENotImplemented
 }
 */
+
+
